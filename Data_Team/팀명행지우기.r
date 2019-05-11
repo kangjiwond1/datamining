@@ -5,3 +5,4 @@ for( i in 1:length(a)){
   a=a[-c(i)]
 }
 a
+write.table(a,file = "rowdelete.text")
