@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 
 path = "C:\chromedriver_win32\\chromedriver.exe"
 driver=webdriver.Chrome(path)
-f = open("C:\\Users\\kjy19\\OneDrive\\¹®¼­\\datamining\\2017_08±îÁö.txt",'a')
+f = open("C:\\Users\\kjy19\\OneDrive\\Â¹Â®Â¼Â­\\datamining\\2017_08Â±Ã®ÃÃ¶.txt",'a')
 for i in range(231490,232134):
     driver.get('http://spodb.spojoy.com/?game_id='+str(i))
     try:
