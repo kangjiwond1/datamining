@@ -254,3 +254,15 @@ for(i in 1:62){
   }
   }
 }
+
+
+
+######################################
+
+#그래프 그림
+s<-subset(x.16,x.16$순서.3==14)[1,3:12]
+s
+plot(as.numeric(s),type="l",ylim=c(1,10))
+par(new=TRUE)
+plot(as.numeric(subset(x.16,x.16$순서.3==14)[2,3:12]),type="l",col="blue",ylim=c(1,10))
+
