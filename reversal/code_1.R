@@ -160,7 +160,7 @@ for(i in 1:60){
   if(b[,10]!=b[,12]){
     abc[count]=abs(a[1,12]-a[2,12])
     count<-count+1
-    
+    #print(a)
   }
 }
 abc
@@ -225,9 +225,10 @@ for(i in 1:33){
   a<-subset(x.14,x.14$순서.2==i)
   b<-a[1,]>a[2,]
   if(b[,10]!=b[,13]){
+   
     abc[count]=abs(a[1,13]-a[2,13])
     count<-count+1
-    
+    #print(a)
   }
 }
 write.csv(abc,"11.txt")
@@ -250,19 +251,41 @@ for(i in 1:62){
   b<-a[1,]>a[2,]
   if(a[1,14]!=a[2,14]){
   if(b[,10]!=b[,14]){
-    print(abs(a[1,14]-a[2,14])) # 절댓값으로 계산
+    #print(abs(a[1,14]-a[2,14])) # 절댓값으로 계산
+    print(a)
   }
   }
 }
-
+subset(x.11,x.11$순서.1==9)
 
 
 ######################################
 
-#그래프 그림
-s<-subset(x.16,x.16$순서.3==14)[1,3:12]
+#그래프 그림_10회
+s<-subset(x.11,x.11$순서.1==9)[1,3:12]
 s
-plot(as.numeric(s),type="l",ylim=c(1,10))
+plot(as.numeric(s),type="b",ylim=c(1,10),xlim=c(1,10),lwd="4")
 par(new=TRUE)
-plot(as.numeric(subset(x.16,x.16$순서.3==14)[2,3:12]),type="l",col="blue",ylim=c(1,10))
+plot(as.numeric(subset(x.11,x.11$순서.1==9)[2,3:12]),type="b",col="red",lwd="4",ylim=c(1,10),xlim=c(1,10))
+
+
+#그래프 그림_11회
+s<-subset(x.14,x.14$순서.2==4)[1,3:13]
+s
+plot(as.numeric(s),type="b",ylim=c(-1,8),xlim=c(1,12),lwd="4")
+par(new=TRUE)
+
+plot(as.numeric(subset(x.14,x.14$순서.2==25)[2,3:13]),lwd="4",type="b",col="red",ylim=c(-1,8),xlim=c(1,12))
+
+
+# 그래프 그림 12회
+s<-subset(x.16,x.16$순서.3==61)[1,3:14]
+s
+plot(as.numeric(s),type="b",ylim=c(-1,9),xlim=c(1,13),lwd="4")
+par(new=TRUE)
+
+plot(as.numeric(subset(x.16,x.16$순서.3==61)[2,3:13]),lwd="4",type="b",col="red",ylim=c(-1,9),xlim=c(1,13))
+
+
+subset(x.16,x.16$순서.3==61)
 
