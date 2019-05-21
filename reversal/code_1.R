@@ -40,23 +40,27 @@ for(i in 1:1431){
   if(!is.na(a[2,11])){
     b<-a[1,]>a[2,]
     if(b[,10]!=b[,11]){
+      #write.csv(a,file="9.csv",row.name=T)
       print(a)
     }
   }
 }
-
-
-#역전의 점수(9회)
+setwd('C:/Users/한세미/Desktop')
+abc=c(0)
+count<-1
+#역전의 점수차(9회)
 for(i in 1:1431){
   a<-subset(x.8,x.8$순서==i)
   if(!is.na(a[2,11])){
     b<-a[1,]>a[2,]
     if(b[,10]!=b[,11]){
-      print(abs(a[1,11]-a[2,11]))
+      abc[count]=abs(a[1,11]-a[2,11])
+      count<-count+1
     }
   }
 }
-
+write.csv(abc,"9.txt")
+abc
 #8회에서 역전한 경기.
 for(i in 1:1431){
   a<-subset(x.8,x.8$순서==i)
@@ -68,17 +72,23 @@ for(i in 1:1431){
   }
 }
 
+abc=c(0)
+count<-1
 #8회에서 역전한 경기 점수차
 for(i in 1:1431){
   a<-subset(x.8,x.8$순서==i)
   if(!is.na(a[2,11])){
     b<-a[1,]>a[2,]
     if(b[,9]!=b[,10]&b[,10]==b[,11]){
-      print(abs(a[1,11]-a[2,11]))
+
+      abc[count]=abs(a[1,11]-a[2,11])
+      count<-count+1
+      
     }
   }
 }
-
+write.csv(abc,"8.txt")
+abc
 #7회에서 역전한 경기.
 for(i in 1:1431){
   a<-subset(x.8,x.8$순서==i)
@@ -90,6 +100,8 @@ for(i in 1:1431){
   }
 }
 
+abc=c(0)
+count<-1
 
 #7회에서 역전한 경기 점수차
 for(i in 1:1431){
@@ -97,11 +109,13 @@ for(i in 1:1431){
   if(!is.na(a[2,11])){
     b<-a[1,]>a[2,]
     if(b[,8]!=b[,9]&b[,9]==b[,10]&b[,10]==b[,11]){
-      print(abs(a[1,11]-a[2,11]))
+      abc[count]=abs(a[1,11]-a[2,11])
+      count<-count+1
+      
     }
   }
 }
-
+write.csv(abc,"7.txt")
 
 #그래프 그림
 s<-subset(x.8,x.8$순서==1027)[1,3:11]
