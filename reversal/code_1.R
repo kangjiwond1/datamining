@@ -290,18 +290,18 @@ plot(p.2,type="b",col="red",ylim=c(-1,12),lwd="4",main="9회")
 #그래프 그림_10회
 s<-subset(x.11,x.11$순서.1==9)[1,3:12]
 s
-plot(as.numeric(s),type="b",main="10회",ylim=c(1,10),xlim=c(1,10),lwd="4")
+plot(as.numeric(s),type="b",main="10회",ylim=c(-1,10),xlim=c(1,10),lwd="4")
 par(new=TRUE)
-plot(as.numeric(subset(x.11,x.11$순서.1==9)[2,3:12]),type="b",col="red",lwd="4",ylim=c(1,10),xlim=c(1,10))
+plot(as.numeric(subset(x.11,x.11$순서.1==9)[2,3:12]),type="b",col="red",lwd="4",ylim=c(-1,10),xlim=c(1,10))
 
 
 #그래프 그림_11회
 s<-subset(x.14,x.14$순서.2==4)[1,3:13]
 s
-plot(as.numeric(s),type="b",ylim=c(-1,8),main="11회",xlim=c(1,12),lwd="4")
+plot(as.numeric(s),type="b",ylim=c(-1,8),main="11회",xlim=c(1,11),lwd="4")
 par(new=TRUE)
 
-plot(as.numeric(subset(x.14,x.14$순서.2==25)[2,3:13]),lwd="4",type="b",col="red",ylim=c(-1,8),xlim=c(1,12))
+plot(as.numeric(subset(x.14,x.14$순서.2==25)[2,3:13]),lwd="4",type="b",col="red",ylim=c(-1,8),xlim=c(1,11))
 
 
 # 그래프 그림 12회
