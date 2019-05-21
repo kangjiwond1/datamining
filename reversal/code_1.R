@@ -45,7 +45,7 @@ for(i in 1:1431){
     }
   }
 }
-setwd('C:/Users/한세미/Desktop')
+
 abc=c(0)
 count<-1
 #역전의 점수차(9회)
@@ -81,8 +81,8 @@ for(i in 1:1431){
     b<-a[1,]>a[2,]
     if(b[,9]!=b[,10]&b[,10]==b[,11]){
 
-      abc[count]=abs(a[1,11]-a[2,11])
-      count<-count+1
+       abc[count]=abs(a[1,11]-a[2,11])
+       count<-count+1
       
     }
   }
@@ -111,7 +111,6 @@ for(i in 1:1431){
     if(b[,8]!=b[,9]&b[,9]==b[,10]&b[,10]==b[,11]){
       abc[count]=abs(a[1,11]-a[2,11])
       count<-count+1
-      
     }
   }
 }
@@ -251,20 +250,47 @@ for(i in 1:62){
   b<-a[1,]>a[2,]
   if(a[1,14]!=a[2,14]){
   if(b[,10]!=b[,14]){
-    #print(abs(a[1,14]-a[2,14])) # 절댓값으로 계산
-    print(a)
+    print(abs(a[1,14]-a[2,14])) # 절댓값으로 계산
   }
   }
 }
 subset(x.11,x.11$순서.1==9)
-
-
 ######################################
+
+# 그래프 그림 7회
+
+p<-subset(x.8,x.8$순서==331)
+p.1<-as.numeric(p[1,3:11])
+plot(p.1,type="b",ylim=c(-1,14),lwd="4",main="7회")
+par(new=TRUE)
+p.2<-as.numeric(p[2,3:11])
+plot(p.2,type="b",col="red",ylim=c(-1,14),lwd="4")
+
+# 그래프 그림 8회
+
+p<-subset(x.8,x.8$순서==1403)
+p.1<-as.numeric(p[1,3:11])
+plot(p.1,type="b",ylim=c(-1,8),lwd="4",main="8회")
+par(new=TRUE)
+p.2<-as.numeric(p[2,3:11])
+plot(p.2,type="b",col="red",ylim=c(-1,8),lwd="4")
+
+
+# 그래프 그림_9회
+
+p<-subset(x.8,x.8$순서==1105)
+p.1<-as.numeric(p[1,3:11])
+plot(p.1,type="b",ylim=c(-1,12),lwd="4")
+par(new=TRUE)
+p.2<-as.numeric(p[2,3:11])#삼성(패)
+plot(p.2,type="b",col="red",ylim=c(-1,12),lwd="4",main="9회")
+
+
 
 #그래프 그림_10회
 s<-subset(x.11,x.11$순서.1==9)[1,3:12]
 s
-plot(as.numeric(s),type="b",ylim=c(1,10),xlim=c(1,10),lwd="4")
+plot(as.numeric(s),type="b",main="10회",ylim=c(1,10),xlim=c(1,10),lwd="4")
 par(new=TRUE)
 plot(as.numeric(subset(x.11,x.11$순서.1==9)[2,3:12]),type="b",col="red",lwd="4",ylim=c(1,10),xlim=c(1,10))
 
@@ -272,7 +298,7 @@ plot(as.numeric(subset(x.11,x.11$순서.1==9)[2,3:12]),type="b",col="red",lwd="4
 #그래프 그림_11회
 s<-subset(x.14,x.14$순서.2==4)[1,3:13]
 s
-plot(as.numeric(s),type="b",ylim=c(-1,8),xlim=c(1,12),lwd="4")
+plot(as.numeric(s),type="b",ylim=c(-1,8),main="11회",xlim=c(1,12),lwd="4")
 par(new=TRUE)
 
 plot(as.numeric(subset(x.14,x.14$순서.2==25)[2,3:13]),lwd="4",type="b",col="red",ylim=c(-1,8),xlim=c(1,12))
@@ -281,11 +307,9 @@ plot(as.numeric(subset(x.14,x.14$순서.2==25)[2,3:13]),lwd="4",type="b",col="re
 # 그래프 그림 12회
 s<-subset(x.16,x.16$순서.3==61)[1,3:14]
 s
-plot(as.numeric(s),type="b",ylim=c(-1,9),xlim=c(1,13),lwd="4")
+plot(as.numeric(s),type="b",main="12회",ylim=c(-1,9),xlim=c(1,13),lwd="4")
 par(new=TRUE)
 
-plot(as.numeric(subset(x.16,x.16$순서.3==61)[2,3:13]),lwd="4",type="b",col="red",ylim=c(-1,9),xlim=c(1,13))
+plot(as.numeric(subset(x.16,x.16$순서.3==61)[2,3:14]),lwd="4",type="b",col="red",ylim=c(-1,9),xlim=c(1,13))
 
-
-subset(x.16,x.16$순서.3==61)
 
