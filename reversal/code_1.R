@@ -151,26 +151,20 @@ for(i in 1:60){
   }
 }
 #10회(8회에서 지던팀이9회에서 동점만들고 10회이김)역전 점수차
+abc=c(0)
+count<-1
 
 for(i in 1:60){
   a<-subset(x.11,x.11$순서.1==i)
   b<-a[1,]>a[2,]
   if(b[,10]!=b[,12]){
-    print(abs(a[1,12]-a[2,12]))
+    abc[count]=abs(a[1,12]-a[2,12])
+    count<-count+1
+    
   }
 }
-
-#역전의 점수(9회)
-for(i in 1:1431){
-  a<-subset(x.8,x.8$순서==i)
-  if(!is.na(a[2,11])){
-    b<-a[1,]>a[2,]
-    if(b[,10]!=b[,11]){
-      print(abs(a[1,11]-a[2,11]))
-    }
-  }
-}
-
+abc
+write.csv(abc,"10.txt")
 
 ##10회 경기 추리기
 x.9<-x.4[-which(is.na(x.4[,11])),]
@@ -224,14 +218,19 @@ for(i in 1:33){
   }
 }
 #11회 역전 경기 점수차(8회에서 지던팀이 11회에서 이김)
+abc=c(0)
+count<-1
 
 for(i in 1:33){
   a<-subset(x.14,x.14$순서.2==i)
   b<-a[1,]>a[2,]
   if(b[,10]!=b[,13]){
-    print(abs(a[1,13]-a[2,13]))
+    abc[count]=abs(a[1,13]-a[2,13])
+    count<-count+1
+    
   }
 }
+write.csv(abc,"11.txt")
 
 #12회경기만 추리기
 x.14<-x.4[-which(is.na(x.4[,13])),]
