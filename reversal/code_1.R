@@ -27,40 +27,50 @@ x.8
 
 #경기별로 뽑기(9회에서 끝남.(9회초에서 끝난건 제외.(역전못한거니까))
 x.8
+
 for(i in 1:1431){
   a<-subset(x.8,x.8$순서==i)
   if(!is.na(a[2,11])){
+
     print(a)
   }
 }
 
+
+
 #역전한 경기(9회)
+
+
+
 for(i in 1:1431){
   a<-subset(x.8,x.8$순서==i)
   if(!is.na(a[2,11])){
-    b<-a[1,]>a[2,]
-    if(b[,10]!=b[,11]){
-      #write.csv(a,file="9.csv",row.name=T)
+    b<-a[1,]>a[2,] # T,F
+    if((b[,10]!=b[,11])&&(a[1,11]-a[2,11])!=0){
       print(a)
+
+
     }
   }
 }
 
-abc=c(0)
-count<-1
+
+
 #역전의 점수차(9회)
+abc <- c()
+count <- 1
 for(i in 1:1431){
   a<-subset(x.8,x.8$순서==i)
   if(!is.na(a[2,11])){
     b<-a[1,]>a[2,]
-    if(b[,10]!=b[,11]){
+    if((b[,10]!=b[,11])&&(a[1,11]-a[2,11])!=0){
       abc[count]=abs(a[1,11]-a[2,11])
       count<-count+1
     }
   }
 }
-write.csv(abc,"9.txt")
-abc
+length(abc)
+
 #8회에서 역전한 경기.
 for(i in 1:1431){
   a<-subset(x.8,x.8$순서==i)
@@ -336,4 +346,178 @@ s.2<-read.csv(file.choose(),header=T)#12회
 mean(s.2[,1])
 c<-rep(7:12)
 plot(c,c(mean(a_7[,1]),mean(a_8[,1]),mean(d.9[,1]),mean(d.10[,1]),mean(s.1[,1]),mean(s.2[,1])),type="h",ylab="평균",lwd="30",col="pink",ylim=c(1.6,2.7))
+
+
+# 역전 팀 뽑기
+
+
+#7회 역전팀 뽑기
+t<-c(0)
+g<-c(0)
+count<-1
+gcount<-1
+for(i in 1:1431){
+  a<-subset(x.8,x.8$순서==i)
+  if(!is.na(a[2,11])){
+    b<-a[1,]>a[2,]
+    if(b[,8]!=b[,9]&b[,9]==b[,10]&b[,10]==b[,11]&b[,11]==TRUE){
+      t[count]=a[1,2]
+      count<-count+1
+    }else if(b[,8]!=b[,9]&b[,9]==b[,10]&b[,10]==b[,11]&b[,11]==FALSE){
+      g[gcount]=a[2,2]
+      gcount<-gcount+1
+    }
+  }
+}
+abab<-c(t,g)
+abab
+ttt<-c("KIA", "kt", "LG", "NC", "SK" ,"넥센" ,"두산" ,"롯데" ,"삼성", "키움" ,"한화")
+table(ttt[abab])
+
+#8
+t<-c(0)
+g<-c(0)
+count<-1
+gcount<-1
+for(i in 1:1431){
+  a<-subset(x.8,x.8$순서==i)
+  if(!is.na(a[2,11])){
+    b<-a[1,]>a[2,]
+    if(b[,9]!=b[,10]&b[,10]==b[,11]&b[,10]==TRUE){
+      t[count]=a[1,2]
+      count<-count+1
+    }else if(b[,9]!=b[,10]&b[,10]==b[,11]&b[,10]==FALSE) {
+      g[gcount]=a[2,2]
+      gcount<-gcount+1
+      
+    }
+  }
+}
+abab<-c(t,g)
+abab
+ttt<-c("KIA", "kt", "LG", "NC", "SK" ,"넥센" ,"두산" ,"롯데" ,"삼성", "키움" ,"한화")
+table(ttt[abab])
+
+
+# 역전 승을 거둔 팀 (9회)
+
+
+aaa1 <- c()
+aaa2 <- c()
+cnt1 <- 1
+cnt2 <- 1
+for(i in 1:1431){
+  a<-subset(x.8,x.8$순서==i)
+  if(!is.na(a[2,11])){
+    b<-a[1,]>a[2,] #결과 _ T,F로 출력함
+    if(b[,10]!=b[,11]){
+      if(a[1,11]>a[2,11]){
+        aaa1[cnt1] <- a[1,2]
+        cnt1 <- cnt1 + 1
+      } # 윗 행에 있는 팀이 이긴 경우
+      
+      else if(a[1,11]<a[2,11]){
+        aaa2[cnt2] <- a[2,2]
+        cnt2 <- cnt2 + 1
+      }
+    }
+  }
+}
+
+
+length(aaa1)
+length(aaa2)
+aaa1
+aaa2
+
+aaa3 <- c(aaa1,aaa2)
+length(aaa3)
+
+
+ttt<-c("KIA", "kt", "LG", "NC", "SK" ,"넥센" ,"두산" ,"롯데" ,"삼성", "키움" ,"한화")
+table(ttt[aaa3])
+
+#10회역전팀 뽑기(역전경기(10회) 8회에서 지던팀이 9회에서동점만들고 10회 이김)
+
+t<-c(0)
+g<-c(0)
+count<-1
+gcount<-1
+for(i in 1:60){
+  a<-subset(x.11,x.11$순서.1==i)
+  b<-a[1,]>a[2,]
+  if(b[,10]!=b[,12]&b[,12]==TRUE){
+    t[count]=a[1,2]
+    count<-count+1
+  }else if(b[,10]!=b[,12]&b[,12]==FALSE){
+    g[gcount]=a[2,2]
+    gcount<-gcount+1
+  }
+}
+abab<-c(t,g)
+abab
+ttt<-c("KIA", "kt", "LG", "NC", "SK" ,"넥센" ,"두산" ,"롯데" ,"삼성", "키움" ,"한화")
+table(ttt[abab])
+
+
+#11회 역전팀뽑기
+#역전한 경기(11회)->8회에서 지던팀이 11회에서이김
+
+t<-c(0)
+g<-c(0)
+count<-1
+gcount<-1
+for(i in 1:33){
+  a<-subset(x.14,x.14$순서.2==i)
+  b<-a[1,]>a[2,]
+  if(b[,10]!=b[,13]&b[,13]==TRUE){
+    t[count]=a[1,2]
+    count<-count+1
+  }else if(b[,10]!=b[,13]&b[,13]==FALSE){
+    g[gcount]=a[2,2]
+    gcount<-gcount+1
+  }
+}
+abab<-c(t,g)
+abab
+ttt<-c("KIA", "kt", "LG", "NC", "SK" ,"넥센" ,"두산" ,"롯데" ,"삼성", "키움" ,"한화")
+table(ttt[abab])
+
+#12회역전팀 뽑기
+
+aaa1 <- c()
+aaa2 <- c()
+cnt1 <- 1
+cnt2 <- 1
+
+
+
+for(i in 1:62){
+  a<-subset(x.16,x.16$순서.3==i)
+  b<-a[1,]>a[2,]
+  if(a[1,14]!=a[2,14]){
+    if(b[,10]!=b[,14]){
+      if(a[1,14]>a[2,14]){
+        print(a[1,2])
+        aaa1[cnt1] <- a[1,2]
+        cnt1 <- cnt1 + 1
+      }
+      if(a[1,14]<a[2,14]){
+        print(a[2,2])
+        aaa2[cnt2] <- a[2,2]
+        cnt2 <- cnt2 + 1
+  }
+    }
+  }
+}
+
+
+aaa1
+aaa2
+
+aaa3 <- c(aaa1,aaa2)
+length(aaa3)
+
+ttt<-c("KIA", "kt", "LG", "NC", "SK" ,"넥센" ,"두산" ,"롯데" ,"삼성", "키움" ,"한화")
+table(ttt[aaa3])
 
