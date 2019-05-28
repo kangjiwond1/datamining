@@ -313,3 +313,27 @@ par(new=TRUE)
 plot(as.numeric(subset(x.16,x.16$순서.3==61)[2,3:14]),lwd="4",type="b",col="red",ylim=c(-1,9),xlim=c(1,13))
 
 
+###################################3
+##티테스트
+s<-read.csv(file.choose(),header = T)#역전 합산
+mean(s[,1])
+t.test(s,mu=2)
+
+####역전평균 막대그래프
+a_7<-read.csv(file.choose(),header = T)#7회
+a_8<-read.csv(file.choose(),header = T)#8회
+mean(a_7[,1])#7회
+mean(a_8[,1])#8회
+
+d.9 <- read.csv(file.choose(),header=T)
+mean(d.9[,1])#9회
+#10회
+d.10 <- read.csv(file.choose(),header=T)
+mean(d.10[,1])
+s.1<-read.csv(file.choose(),header=T)#11회
+mean(s.1[,1])
+s.2<-read.csv(file.choose(),header=T)#12회
+mean(s.2[,1])
+c<-rep(7:12)
+plot(c,c(mean(a_7[,1]),mean(a_8[,1]),mean(d.9[,1]),mean(d.10[,1]),mean(s.1[,1]),mean(s.2[,1])),type="h",ylab="평균",lwd="30",col="pink",ylim=c(1.6,2.7))
+
