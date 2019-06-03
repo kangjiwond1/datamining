@@ -18,4 +18,5 @@ for(i in 1:60){
 abab<-c(t,g)
 abab
 ttt<-c("kia","KIA", "kt", "LG", "NC", "SK" ,"³Ø¼¾" ,"µÎ»ê" ,"·Ôµ¥" ,"»ï¼º", "Å°¿ò" ,"ÇÑÈ­")
-table(ttt[abab])
+ten<-table(ttt[abab])
+ten

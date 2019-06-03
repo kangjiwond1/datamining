@@ -20,4 +20,4 @@ for(i in 1:1431){
 abab<-c(t,g)
 abab
 ttt<-c("kIA", "KIA", "kt", "LG", "NC", "SK" ,"³Ø¼¾" ,"µÎ»ê" ,"·Ôµ¥" ,"»ï¼º", "Å°¿ò" ,"ÇÑÈ­")
-table(ttt[abab])
+eight<-table(ttt[abab])
