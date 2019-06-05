@@ -1,0 +1,105 @@
+base<-read.csv(file.choose(),header = T)
+summary(base)
+str(base)
+base<-base[,c(-1,-2,-3)]
+summary(base)
+##단위가 다르기 때문에 표준화 필요성
+
+#<회귀분석>
+lm.a<-lm(WAR~.,data=base)
+lm.a
+summary(lm.a)
+library(car)
+vif(lm.a)
+plot(lm.a)
+par(mfrow=c(2,2))
+
+#<변수선택법>
+step(lm.a, direction = 'both')
+
+lm.a2<-lm(formula = WAR ~ K.9 + BB.9 + HR.9 + LOB. + RA9.WAR + K.BB + 
+            FIP + WHIP + oAVG, data = base)
+summary(lm.a2)
+vif(lm.a2) #다중 공선성 발생
+library(corrplot)
+str(base2)
+M<-cor(base2[,1:11])
+corrplot(M,method="number")
+corrplot(M,method="circle")
+corrplot(M,method="pie")
+
+#<주성분 분석>
+library(psych)
+
+str(base)
+summary(base) # 표준화의 필요성 
+base_trans<-transform(base,
+                      K.9_s=scale(K.9),
+                      BB.9_s=scale(BB.9),
+                      HR.9_s=scale(HR.9),
+                      LOB._s =scale(LOB.),
+                      RA9.WAR_s=scale(RA9.WAR),
+                      K.BB_s=scale(K.BB),
+                      ERA_s=scale(ERA),
+                      FIP_s=scale(FIP),
+                      kFIP_s=scale(kFIP),
+                      WHIP_s=scale(WHIP),
+                      oAVG_s=scale(oAVG),
+                      oOBP_s=scale(oOBP),
+                      oSLG_s=scale(oSLG),
+                      oOPS_s=scale(oOPS)
+)
+
+str(base_trans)
+base_trans2<-base_trans[,c("K.9_s","BB.9_s",
+                           "HR.9_s","LOB._s",
+                           "RA9.WAR_s",       
+                           "K.BB_s","ERA_s",
+                           "FIP_s","kFIP_s",
+                           "WHIP_s","oAVG_s",
+                           "oOBP_s","oSLG_s",
+                           "oOPS_s","WAR")]
+
+head(base_trans2)
+summary(base_trans2)
+pairs.panels(base_trans2) 
+str(base_trans2)
+base_prcomp <- prcomp(base_trans2[,-15]) #주성분분석 실시 
+base_prcomp
+screeplot(base_prcomp,type = "lines",main = "scree plot") #산비탈 그림
+summary(base_prcomp) #카이저의 규칙에 따라 사용되는 주성분의 수는 4개.
+
+
+head(base_prcomp$x)
+
+PC11<- predict(data_prcomp)[,1]
+PC22<-predict(data_prcomp)[,2]
+PC33<-predict(data_prcomp)[,3]
+PC44<- predict(data_prcomp)[,4]
+
+
+
+str(base)
+WAR<- base[,6]
+
+base.lm <- lm(WAR ~ PC1+PC2+PC3+PC4, data = as.data.frame(base_prcomp$x))
+a<-base.lm
+summary(a) # 주성분2의 유의확률이 큼> 변수 선택 필요
+step(a,direction="both")
+aa <- lm(formula = WAR ~ PC1 + PC3 + PC4, data = as.data.frame(base_prcomp$x))
+summary(aa)
+vif(aa) #다중공선성 문제 해결
+
+
+## 주성분 이름 명명
+self-assertive ability
+Practical feasibility
+strikeout capacity
+
+SA<- predict(data_prcomp)[,1]
+PLP<-predict(data_prcomp)[,3]
+SC<- predict(data_prcomp)[,4]
+
+lm.war<-lm(formula = WAR~SA+PLP+SC, data=as.data.frame(base_prcomp$x))
+lm.war
+summary(lm.war)
